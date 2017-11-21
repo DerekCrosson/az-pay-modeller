@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import './nav-bar.css';
+import Auth from '../auth/auth';
+const auth = new Auth();
 
-class NavBar extends Component {
+export default class NavBar extends Component {
 
-    constructor(props){
-        super(props);
-    }
+    logout = () => auth.logout();
 
     render() {
         return (
-            <nav className="navbar">
-                <div id="navMenuExample" className="navbar-menu">
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <div className="field is-grouped">
-                                {
-                                    this.props.isAuthenticated() && (
-                                        <p className="control">
-                                            <a className="button is-primary" onClick={() => this.props.logout()}>
-                                                <span>Log Out</span>
-                                            </a>
-                                        </p>
-                                    )
-                                }
-                            </div>
-                        </div>
-                    </div>
+            <div className="nav-bar">
+                <a className="button is-info logout" onClick={() => this.logout()}>
+                    <span>Log Out</span>
+                </a>
+                <div className="clear"> </div>
+                <div className="tabs is-toggle is-fullwidth is-large">
+                    <ul>
+                        <li>
+                            <NavLink to="/" exact activeClassName="active">
+                                <span className="icon"><i className="fa fa-image"></i></span>
+                                <span>Overview of changes</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/pay-structures" activeClassName="active">
+                                <span className="icon"><i className="fa fa-bar-chart"></i></span>
+                                <span>Your pay structures</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/projection" activeClassName="active">
+                                <span className="icon"><i className="fa fa-line-chart"></i></span>
+                                <span>Projection and modelling</span>
+                            </NavLink>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
         )
     }
 }
-
-export default NavBar;

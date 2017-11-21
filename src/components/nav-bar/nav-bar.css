@@ -1,0 +1,16 @@
+.nav-bar {
+    margin-bottom: 20px;
+}
+.tabs a {
+    background: #fff;
+}
+.tabs a.active,
+.tabs.is-toggle a.active:hover {
+    background: #3273dc;
+    color: #fff;
+}
+
+a.logout {
+    margin: 10px 0 10px 10px;
+    float: right;
+}
