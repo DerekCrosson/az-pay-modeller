@@ -18,10 +18,62 @@ export default class Auth {
         this.logout = this.logout.bind(this);
         this.handleAuthentication = this.handleAuthentication.bind(this);
         this.isAuthenticated = this.isAuthenticated.bind(this);
+        this.signup = this.signup.bind(this);
+        this.loginWithGoogle = this.loginWithGoogle.bind(this);
+        this.getProfile = this.getProfile.bind(this);
     }
 
     login() {
         this.auth0.authorize();
+    }
+
+    // login(username, password) {
+    //     this.auth0.client.login(
+    //         {realm: 'PayModeller', username, password},
+    //         (err, authResult) => {
+    //             if (err) {
+    //                 console.log(err);
+    //                 alert(`Error: ${err.description}. Check the console for further details.`);
+    //                 return;
+    //             }
+    //             this.setSession(authResult);
+    //         }
+    //     );
+    // }
+
+    signup(email, password) {
+        this.auth0.redirect.signupAndLogin(
+            {connection: 'PayModeller', email, password},
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    alert(`Error: ${err.description}. Check the console for further details.`);
+                    return;
+                }
+            }
+        );
+    }
+
+    getAccessToken() {
+        const accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+            throw new Error('No access token found');
+        }
+        return accessToken;
+    }
+
+    getProfile(cb) {
+        let accessToken = this.getAccessToken();
+        this.auth0.client.userInfo(accessToken, (err, profile) => {
+            if (profile) {
+                this.userProfile = profile;
+            }
+            cb(err, profile);
+        });
+    }
+
+    loginWithGoogle() {
+        this.auth0.authorize({connection: 'google-oauth2'});
     }
 
     handleAuthentication() {

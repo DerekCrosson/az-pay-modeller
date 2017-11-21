@@ -1,5 +1,48 @@
 import React, { Component } from 'react';
 import NavBar from '../nav-bar';
+import ReactHighcharts from 'react-highcharts';
+
+const config = {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Pay structures'
+    },
+    xAxis: {
+        categories: ['31 December 2018', '1 January 2019']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Income'
+        }
+    },
+    tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+        shared: true
+    },
+    plotOptions: {
+        column: {
+            stacking: 'column'
+        }
+    },
+    series: [{
+        name: 'Advantage fund',
+        data: [40000, 6000]
+    },{
+        name: 'Benefit fund',
+        data: [0, 10000]
+    },
+        {
+            name: 'Projected fund',
+            data: [0, 10000]
+        },
+        {
+            name: 'Base',
+            data: [70000, 85000]
+        }]
+}
 
 export default class PayStructures extends Component {
 
@@ -58,6 +101,7 @@ export default class PayStructures extends Component {
         return (
             <div className="container">
                 <NavBar />
+                <ReactHighcharts config={config} domProps={{id: 'payStructures'}}></ReactHighcharts>
                 <div className="content">
                     <table>
                         <thead>

@@ -1,0 +1,7 @@
+.button-panel {
+    padding-top: 120px !important;
+}
+.button.is-medium {
+    display: block;
+    margin-bottom: 15px;
+}
