@@ -2,7 +2,7 @@
   "name": "dota2-favorite-hero",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "homepage": "/paymodeller",
   "dependencies": {
     "auth0-js": "^8.8.0",
     "axios": "^0.16.2",
