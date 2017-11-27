@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from '../nav-bar';
-import ProjectionCharts from './projection-charts'
+import NavBar from '../nav-bar/index';
+import ProjectionCharts from './projection-charts/index'
 import './projection-chart.css';
 
 export default class Projection extends Component {

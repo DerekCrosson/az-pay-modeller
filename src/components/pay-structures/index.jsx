@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../nav-bar';
+import NavBar from '../nav-bar/index';
 import ReactHighcharts from 'react-highcharts';
 
 const config = {

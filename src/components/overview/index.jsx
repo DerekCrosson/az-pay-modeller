@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './overview.css';
-import NavBar from '../nav-bar';
+import NavBar from '../nav-bar/index';
 
 export default class Overview extends Component {
 
